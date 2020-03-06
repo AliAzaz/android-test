@@ -74,7 +74,7 @@ public class IdlingThreadPoolExecutorTest {
     r.waitForExecution();
     assertThat(this.executor.isIdleNow()).isFalse();
     r.release();
-    verify(mockCallback, timeout(100)).onTransitionToIdle();
+    verify(mockCallback, timeout(1000)).onTransitionToIdle();
     assertThat(this.executor.isIdleNow()).isTrue();
   }
 
@@ -95,7 +95,7 @@ public class IdlingThreadPoolExecutorTest {
     r2.release();
     assertThat(this.executor.isIdleNow()).isFalse();
     r3.release();
-    verify(mockCallback, timeout(100)).onTransitionToIdle();
+    verify(mockCallback, timeout(1000)).onTransitionToIdle();
     assertThat(this.executor.isIdleNow()).isTrue();
   }
 
@@ -105,7 +105,7 @@ public class IdlingThreadPoolExecutorTest {
     ErrorRunnable r = new ErrorRunnable();
     this.executor.execute(r);
     r.waitForExecution();
-    verify(mockCallback, timeout(100)).onTransitionToIdle();
+    verify(mockCallback, timeout(1000)).onTransitionToIdle();
     assertThat(this.executor.isIdleNow()).isTrue();
   }
 
